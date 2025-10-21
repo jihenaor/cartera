@@ -51,5 +51,6 @@ Las entidades JPA se encuentran en `com.cartera.cobranza.infrastructure.persiste
 - `CO_MANAGER`: Gestores de cobranza.
 - `CO_COLLECTION_ASSIGNMENT`: Asignaciones de cartera a gestores.
 - `CO_COLLECTION_ACTION_LOG`: Bitácora de llamadas, correos y pagos.
+- `CO_DELINQUENCY_REPORT`: Detalle completo para los campos exigidos por el informe regulatorio mensual.
 
 Las estructuras soportan la trazabilidad solicitada para la gestión de cobranza.

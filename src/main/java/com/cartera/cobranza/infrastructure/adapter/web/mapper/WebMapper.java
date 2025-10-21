@@ -5,16 +5,19 @@ import com.cartera.cobranza.domain.model.CollectionAssignment;
 import com.cartera.cobranza.domain.model.CollectionManager;
 import com.cartera.cobranza.domain.model.Company;
 import com.cartera.cobranza.domain.model.DelinquencyRecord;
+import com.cartera.cobranza.domain.model.DelinquencyReportEntry;
 import com.cartera.cobranza.domain.model.DelinquencyStatus;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionActionLogRequest;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionActionLogResponse;
+import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionAssignmentResponse;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionManagerRequest;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionManagerResponse;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CompanyRequest;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.CompanyResponse;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.DelinquencyRecordRequest;
 import com.cartera.cobranza.infrastructure.adapter.web.dto.DelinquencyRecordResponse;
-import com.cartera.cobranza.infrastructure.adapter.web.dto.CollectionAssignmentResponse;
+import com.cartera.cobranza.infrastructure.adapter.web.dto.DelinquencyReportRequest;
+import com.cartera.cobranza.infrastructure.adapter.web.dto.DelinquencyReportResponse;
 import org.springframework.stereotype.Component;
 
 import java.time.YearMonth;
@@ -130,6 +133,83 @@ public class WebMapper {
                 .assignedDate(assignment.getAssignedDate())
                 .status(assignment.getStatus().name())
                 .observations(assignment.getObservations())
+                .build();
+    }
+
+    public DelinquencyReportEntry toDomain(DelinquencyReportRequest request, Company company) {
+        return DelinquencyReportEntry.builder()
+                .company(company)
+                .reportPeriod(request.getReportPeriod())
+                .reportConsecutive(request.getReportConsecutive())
+                .contributorType(request.getContributorType())
+                .contributorClass(request.getContributorClass())
+                .economicActivityCode(request.getEconomicActivityCode())
+                .departmentCode(request.getDepartmentCode())
+                .municipalityCode(request.getMunicipalityCode())
+                .address(request.getAddress())
+                .contactName(request.getContactName())
+                .contactEmail(request.getContactEmail())
+                .contactPhone(request.getContactPhone())
+                .employeesReported(request.getEmployeesReported())
+                .dueDate(request.getDueDate())
+                .daysInArrears(request.getDaysInArrears())
+                .principalAmount(request.getPrincipalAmount())
+                .interestAmount(request.getInterestAmount())
+                .totalAmount(request.getTotalAmount())
+                .lastPaymentDate(request.getLastPaymentDate())
+                .lastPaymentAmount(request.getLastPaymentAmount())
+                .collectionStage(request.getCollectionStage())
+                .collectionChannel(request.getCollectionChannel())
+                .managementResult(request.getManagementResult())
+                .observation(request.getObservation())
+                .agreementNumber(request.getAgreementNumber())
+                .agreementDate(request.getAgreementDate())
+                .agreementStatus(request.getAgreementStatus())
+                .enforcementProcessNumber(request.getEnforcementProcessNumber())
+                .enforcementProcessDate(request.getEnforcementProcessDate())
+                .riskLevel(request.getRiskLevel())
+                .sourceFileName(request.getSourceFileName())
+                .generatedAt(request.getGeneratedAt())
+                .updatedAt(request.getUpdatedAt())
+                .build();
+    }
+
+    public DelinquencyReportResponse toResponse(DelinquencyReportEntry entry) {
+        return DelinquencyReportResponse.builder()
+                .id(entry.getId())
+                .companyId(entry.getCompany().getId())
+                .reportPeriod(entry.getReportPeriod())
+                .reportConsecutive(entry.getReportConsecutive())
+                .contributorType(entry.getContributorType())
+                .contributorClass(entry.getContributorClass())
+                .economicActivityCode(entry.getEconomicActivityCode())
+                .departmentCode(entry.getDepartmentCode())
+                .municipalityCode(entry.getMunicipalityCode())
+                .address(entry.getAddress())
+                .contactName(entry.getContactName())
+                .contactEmail(entry.getContactEmail())
+                .contactPhone(entry.getContactPhone())
+                .employeesReported(entry.getEmployeesReported())
+                .dueDate(entry.getDueDate())
+                .daysInArrears(entry.getDaysInArrears())
+                .principalAmount(entry.getPrincipalAmount())
+                .interestAmount(entry.getInterestAmount())
+                .totalAmount(entry.getTotalAmount())
+                .lastPaymentDate(entry.getLastPaymentDate())
+                .lastPaymentAmount(entry.getLastPaymentAmount())
+                .collectionStage(entry.getCollectionStage())
+                .collectionChannel(entry.getCollectionChannel())
+                .managementResult(entry.getManagementResult())
+                .observation(entry.getObservation())
+                .agreementNumber(entry.getAgreementNumber())
+                .agreementDate(entry.getAgreementDate())
+                .agreementStatus(entry.getAgreementStatus())
+                .enforcementProcessNumber(entry.getEnforcementProcessNumber())
+                .enforcementProcessDate(entry.getEnforcementProcessDate())
+                .riskLevel(entry.getRiskLevel())
+                .sourceFileName(entry.getSourceFileName())
+                .generatedAt(entry.getGeneratedAt())
+                .updatedAt(entry.getUpdatedAt())
                 .build();
     }
 }
